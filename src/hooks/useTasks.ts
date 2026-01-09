@@ -63,6 +63,8 @@ export function useTasks(): UseTasksState {
 
   // Initial load: public JSON -> fallback generated dummy
   useEffect(() => {
+    if (fetchedRef.current) return;
+    fetchedRef.current = true;
     let isMounted = true;
     async function load() {
       try {
@@ -76,10 +78,7 @@ export function useTasks(): UseTasksState {
       } catch (e: any) {
         if (isMounted) setError(e?.message ?? 'Failed to load tasks');
       } finally {
-        if (isMounted) {
-          setLoading(false);
-          fetchedRef.current = true;
-        }
+        if (isMounted) setLoading(false);
       }
     }
     load();
