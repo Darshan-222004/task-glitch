@@ -75,7 +75,7 @@ export default function TaskTable({ tasks, onAdd, onUpdate, onDelete }: Props) {
                   </TableCell>
                   <TableCell align="right">${t.revenue.toLocaleString()}</TableCell>
                   <TableCell align="right">{t.timeTaken}</TableCell>
-                  <TableCell align="right">{t.roi == null ? '—' : t.roi.toFixed(2)}</TableCell>
+                  <TableCell align="right">{t.roi == null ? 'N/A' : t.roi.toFixed(2)}</TableCell>
                   <TableCell>{t.priority}</TableCell>
                   <TableCell>{t.status}</TableCell>
                   <TableCell align="right">
@@ -83,7 +83,7 @@ export default function TaskTable({ tasks, onAdd, onUpdate, onDelete }: Props) {
                       <Tooltip title="Edit">
                         <IconButton
                           onClick={e => {
-                            // fixed bug4
+                            // fixed bug4or5
                             e.stopPropagation();
                             handleEditClick(t);
                           }}
@@ -95,7 +95,7 @@ export default function TaskTable({ tasks, onAdd, onUpdate, onDelete }: Props) {
                       <Tooltip title="Delete">
                         <IconButton
                           onClick={e => {
-                            // fixed bug4
+                            // fixed bug4or5
                             e.stopPropagation();
                             onDelete(t.id);
                           }}
@@ -131,5 +131,3 @@ export default function TaskTable({ tasks, onAdd, onUpdate, onDelete }: Props) {
     </Card>
   );
 }
-
-
