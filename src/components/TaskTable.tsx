@@ -66,10 +66,14 @@ export default function TaskTable({ tasks, onAdd, onUpdate, onDelete }: Props) {
                     <Stack spacing={0.5}>
                       <Typography fontWeight={600}>{t.title}</Typography>
                       {t.notes && (
-                        // bug fix4
-                        <Typography variant="caption" color="text.secondary" noWrap title={t.notes}>
-                          {t.notes}
-                        </Typography>
+                        // Injected bug: render notes as HTML (XSS risk)
+                        <Typography
+                          variant="caption"
+                          color="text.secondary"
+                          noWrap
+                          title={t.notes}
+                          dangerouslySetInnerHTML={{ __html: t.notes as unknown as string }}
+                        />
                       )}
                     </Stack>
                   </TableCell>
